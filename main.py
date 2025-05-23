@@ -25,10 +25,9 @@ while True:
     if response.status_code == 200:
         data = response.json()
         ministry_count = len(data)
-        department_count = sum(len(m.get("departments", [])) for m in data)
 
         print(f"✅ Status: {response.status_code}")
-        print(f"📊 Fetched {ministry_count} ministries and {department_count} departments.")
+        print(f"📊 Fetched {ministry_count} ministries")
         print(f"⏱️ Time taken: {elapsed:.4f} seconds")
 
         ministry_limits.append(f"{ministry_count}M")
@@ -54,7 +53,7 @@ plt.grid(True)
 
 # Add time value annotations above each point
 for i, txt in enumerate(times_taken):
-    plt.annotate(f"{txt:.2f}s", (ministry_limits[i], times_taken[i]), textcoords="offset points", xytext=(0, 8), ha='center')
+    plt.annotate(f"{txt:.2f}s", (ministry_limits[i] , times_taken[i]), textcoords="offset points", xytext=(0, 8), ha='center')
 
 plt.tight_layout()
 plt.show()
